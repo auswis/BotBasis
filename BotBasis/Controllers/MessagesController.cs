@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
+using BotBasis.Controllers.Cards;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace BotBasis
 {
@@ -21,12 +23,36 @@ namespace BotBasis
         {
             if (activity.Type == ActivityTypes.Message)
             {
+                
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
+                // Test der Karte
+                List<string> urlList = new List<string>();
+                urlList.Add("http://www.duophon.com/designs/de/standard/images/footer/Phone_256.png");
+                List<CardAction> cardButtons = new List<CardAction>();
+                CardAction plButton = new CardAction()
+                {
+                    Value = "https://en.wikipedia.org/wiki/Pig_Latin",
+                    Type = "openUrl",
+                    Title = "Ja"
+                };
+                cardButtons.Add(plButton);
+                CardAction plButton2 = new CardAction()
+                {
+                    Value = "https://en.wikipedia.org/wiki/Pig_Latin",
+                    Type = "openUrl",
+                    Title = "Nein"
+                };
+                cardButtons.Add(plButton2);
 
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+
+                //_______
+
+
+
+
+                Activity reply = FrameworkCards.createHeroCard(activity, "Reply", "HeroCard", "Subtitle", "Text der Herocardd",FrameworkCards.createCardImage(urlList), cardButtons);
+
+            
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else

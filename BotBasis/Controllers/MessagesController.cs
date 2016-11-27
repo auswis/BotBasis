@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
+using BotBasis.Controllers.Cards.TestCard;
 using BotBasis.Controllers.Cards;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -23,36 +24,22 @@ namespace BotBasis
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // Test der Karte
-                List<string> urlList = new List<string>();
-                urlList.Add("http://www.duophon.com/designs/de/standard/images/footer/Phone_256.png");
-                List<CardAction> cardButtons = new List<CardAction>();
-                CardAction plButton = new CardAction()
+
+                var text = activity.Text;
+                Activity reply = new Activity();
+                switch (text)
                 {
-                    Value = "https://en.wikipedia.org/wiki/Pig_Latin",
-                    Type = "openUrl",
-                    Title = "Ja"
-                };
-                cardButtons.Add(plButton);
-                CardAction plButton2 = new CardAction()
-                {
-                    Value = "https://en.wikipedia.org/wiki/Pig_Latin",
-                    Type = "openUrl",
-                    Title = "Nein"
-                };
-                cardButtons.Add(plButton2);
+                    case "Hero":
+                        reply = TestFrameworkCards.createHeroExample(activity);
+                        break;
+                    case "Thumbnail":
+                        reply = TestFrameworkCards.createThumbnailExample(activity);
+                        break;
+                }
+               
+               
 
-
-                //_______
-
-
-
-
-                Activity reply = FrameworkCards.createHeroCard(activity, "Reply", "HeroCard", "Subtitle", "Text der Herocardd",FrameworkCards.createCardImage(urlList), cardButtons);
-
-            
                 await connector.Conversations.ReplyToActivityAsync(reply);
             }
             else

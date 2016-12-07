@@ -166,8 +166,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\BotBasis20161127035955 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\BotBasis20161127035955 - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\BotBasis20161127035955 - Web Deploy.pubxml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
+    <None Include="Properties\PublishProfiles\Publish Bot.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

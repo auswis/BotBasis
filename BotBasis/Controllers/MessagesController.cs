@@ -36,6 +36,9 @@ namespace BotBasis
                     case "Thumbnail":
                         reply = TestFrameworkCards.createThumbnailExample(activity);
                         break;
+                    case "carousel":
+                        reply = FrameworkCards.createCarusel(activity);
+                        break;
                 }
                
                

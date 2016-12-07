@@ -99,5 +99,44 @@ namespace BotBasis.Controllers.Cards
         {
             return null;
         }
+
+        public static Activity createCarusel(Activity message)
+        {
+
+            Activity replyToConversation = message.CreateReply("Should go to conversation, with a carousel");
+            replyToConversation.Recipient = message.From;
+            replyToConversation.Type = "message";
+            //replyToConversation.AttachmentLayout = "carousel";
+            replyToConversation.Attachments = new List<Attachment>();
+            Dictionary<string, string> cardContentList = new Dictionary<string, string>();
+            cardContentList.Add("PigLatin", "http://icons.veryicon.com/ico/System/iOS7%20Minimal/Shopping%20Card%20in%20use.ico");
+            cardContentList.Add("Pork Shoulder", "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/ultra-glossy-silver-buttons-icons-symbols-shapes/021300-ultra-glossy-silver-button-icon-symbols-shapes-power-button.png");
+            foreach (KeyValuePair<string, string> cardContent in cardContentList)
+            {
+                List<CardImage> cardImages = new List<CardImage>();
+                cardImages.Add(new CardImage(url: cardContent.Value));
+                List<CardAction> cardButtons = new List<CardAction>();
+                CardAction plButton = new CardAction()
+                {
+                    Value = $"https://en.wikipedia.org/wiki/{cardContent.Key}",
+                    Type = "openUrl",
+                    Title = "WikiPedia Page"
+                };
+                cardButtons.Add(plButton);
+                HeroCard plCard = new HeroCard()
+                {
+                    Title = $"I'm a hero card about {cardContent.Key}",
+                    Subtitle = $"{cardContent.Key} Wikipedia Page",
+                    Images = cardImages,
+                    Buttons = cardButtons
+                };
+                Attachment plAttachment = plCard.ToAttachment();
+                replyToConversation.Attachments.Add(plAttachment);
+            }
+            replyToConversation.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+            
+            return replyToConversation;
+        }
+
     }
 }

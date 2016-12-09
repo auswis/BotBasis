@@ -37,7 +37,10 @@ namespace BotBasis
                         reply = TestFrameworkCards.createThumbnailExample(activity);
                         break;
                     case "carousel":
-                        reply = FrameworkCards.createCarusel(activity);
+                        List<Activity> actiList = new List<Activity>();
+                        actiList.Add(TestFrameworkCards.createHeroExample(activity));
+                        actiList.Add(TestFrameworkCards.createThumbnailExample(activity));
+                        reply = FrameworkCards.createCarusel(actiList,activity);
                         break;
                 }
                

@@ -11,7 +11,7 @@ namespace BotBasis.Controllers.Cards.TestCard
         public static Activity createHeroExample( Activity activity)
         {
             List<CardImage> cardImages = new List<CardImage>();
-            cardImages.Add(new CardImage(url: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/ultra-glossy-silver-buttons-icons-symbols-shapes/021300-ultra-glossy-silver-button-icon-symbols-shapes-power-button.png"));
+            cardImages.Add(new CardImage(url: "http://image.flaticon.com/teams/new/137-vectors-market.jpg"));
 
             List<CardAction> cardButtons = new List<CardAction>();
 
@@ -40,8 +40,7 @@ namespace BotBasis.Controllers.Cards.TestCard
         public static Activity createThumbnailExample(Activity activity)
         {
             List<CardImage> cardImages = new List<CardImage>();
-            cardImages.Add(new CardImage(url: "http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons-256/ultra-glossy-silver-buttons-icons-symbols-shapes/021300-ultra-glossy-silver-button-icon-symbols-shapes-power-button.png"));
-            cardImages.Add(new CardImage(url: "http://icons.veryicon.com/ico/System/iOS7%20Minimal/Shopping%20Card%20in%20use.ico"));
+            cardImages.Add(new CardImage(url: "http://image.flaticon.com/teams/new/1-freepik.jpg"));
 
             List<CardAction> cardButtons = new List<CardAction>();
 
